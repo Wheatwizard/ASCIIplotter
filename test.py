@@ -1,6 +1,6 @@
 #Define a function written in python
 def function(x):
-	return math.sin(x)
+	return math.tan(x)
 
 #Define the x size of each character
 #(distance between tick marks on the graph)
@@ -14,8 +14,8 @@ x_min = -90
 x_max = 90
 
 #Define the start and end of the y partitions
-y_min = -10
-y_max = 10
+y_min = -60
+y_max = 60
 
 #State whether or not axes should be plotted
 plot_axes = False

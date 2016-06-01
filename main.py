@@ -47,7 +47,9 @@ if __name__ == '__main__':
 	for x in range(x_min, x_max):
 		if int(f(x)) > y_max or int(f(x)) < y_min:
 			continue
+		back_diff = f(x)-f(x-1)
 		diff = f(x+.5)-f(x-.5)
+		front_diff = f(x+1)-f(x)	
 		if abs(diff) < .5:
 			floor_diff = f(x)-int(f(x))
 			if floor_diff > .5 and int(f(x))+1 < y_max:
@@ -62,5 +64,27 @@ if __name__ == '__main__':
 			plot[x][int(f(x))] = '\\'
 		elif diff > 0:
 			plot[x][int(f(x))] = '/'
+		
+		#Complete the line if it is non-continuous
+		if back_diff < -1:
+			y = int(f(x))+1
+			while y < f(x-.5) and y < y_max:
+				plot[x][y] = '|'
+				y += 1
+		elif back_diff > 1:
+			y = int(f(x))-1
+			while y > f(x-.5) and y > y_min:
+				plot[x][y] = '|'
+				y -= 1
+		if front_diff < -1:
+			y = int(f(x))-1
+			while y > f(x+.5) and y > y_min:
+				plot[x][y] = '|'
+				y -= 1
+		elif front_diff > 1:
+			y = int(f(x))+1
+			while y < f(x+.5) and y < y_max:
+				plot[x][y] = '|'
+				y += 1	
 	print_plot(plot, x_min, y_min)
 	
