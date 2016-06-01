@@ -1,7 +1,6 @@
 import math
 
-def f(x):
-	return 8*math.tan(x/8.)
+from sys import argv
 
 def abs(x):
 	if x < 0:
@@ -17,15 +16,34 @@ def print_plot(plot, x_min, y_min):
 	print result
 
 if __name__ == '__main__':
-	x_min = -90
-	x_max = 90
-	y_min = -90
-	y_max = 90
+	if len(argv) < 2:
+		print "Please provide a file name for parameters"
+		exit(0)
+	#Get commandline arguments
+	script, file_name = argv
+	
+	#Execute the code in the test file
+	exec(open(file_name).read())
+	
+	#Modify the function
+	def f(x):
+		try:
+			return function(x*x_size)/y_size
+		except:	
+			#If x is not in the domain of the function plot it outside of the graph
+			#(This causes some issues with slope to be fixed later)
+			return y_max+10
+	
 	plot = [[' ' for y in range(y_min, y_max+1)] for x in range(x_min, x_max+1)]
-	for x in range(x_min, x_max):
-		plot[x][0] = '.'
-	for y in range(y_min, y_max):
-		plot[0][y] = ':'
+	
+	#Plot axes
+	if plot_axes:
+		for x in range(x_min, x_max):
+			plot[x][0] = '.'
+		for y in range(y_min, y_max):
+			plot[0][y] = ':'
+	
+	#Plot function
 	for x in range(x_min, x_max):
 		if int(f(x)) > y_max or int(f(x)) < y_min:
 			continue
