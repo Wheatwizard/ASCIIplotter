@@ -48,8 +48,23 @@ if __name__ == '__main__':
 		if int(f(x)) > y_max or int(f(x)) < y_min:
 			continue
 		back_diff = f(x)-f(x-1)
+		
+		#Check that the last value was valid
+		try:
+			function((x-1)*x_size)/y_size
+		except:
+			back_diff = 0
+		
 		diff = f(x+.5)-f(x-.5)
 		front_diff = f(x+1)-f(x)	
+		
+		#Check that the next value was valid
+		try:
+			function((x+1)*x_size)/y_size
+		except:
+			front_diff = 0
+				
+
 		if abs(diff) < .5:
 			floor_diff = f(x)-int(f(x))
 			if floor_diff > .5 and int(f(x))+1 < y_max:
