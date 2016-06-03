@@ -9,7 +9,14 @@ class Plot(object):
 		self.internal_plot = [[' ' for y in range(y_min, y_max+1)] for x in range(x_min, x_max+1)]
 	def set(self,a,b,char):
 		if (a < self.x_max and a > self.x_min and b < self.y_max and b > self.y_min):
-			self.internal_plot[a][b] = char
+			if set([char,self.internal_plot[a][b]]) == set(['\\','/']):
+				self.internal_plot[a][b] = 'X'
+			elif set([char,self.internal_plot[a][b]]) == set(['-','|']):
+				self.internal_plot[a][b] = '+'
+			elif char == self.internal_plot[a][b] == '-':
+				self.internal_plot[a][b] = '='
+			else:
+				self.internal_plot[a][b] = char
 	def plot_axes(self):
 		for x in range(x_min, x_max):
 			plot[x][0] = '.'

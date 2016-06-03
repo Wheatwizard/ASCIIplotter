@@ -24,6 +24,7 @@ if __name__ == '__main__':
 	#Plot axes
 	if plot_axes: plot.plot_axes
 	
-	#Plot function
-	plot.plot_function(function)
+	#Plot functions
+	for function in functions:
+		plot.plot_function(function)
 	plot.print_plot()	
