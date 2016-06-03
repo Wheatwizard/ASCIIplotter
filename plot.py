@@ -1,11 +1,16 @@
+import math
+
 class Plot(object):
-	def __init__(self, x_min, x_max, x_size, y_min, y_max, y_size):
+	def __init__(self, x_min, x_max, x_size, y_min, y_max, y_size, t_min, t_max, t_size):
 		self.x_min = x_min
 		self.x_max = x_max
 		self.x_size = x_size
 		self.y_min = y_min
 		self.y_max = y_max
 		self.y_size = y_size
+		self.t_min = t_min
+		self.t_max = t_max
+		self.t_size = t_size
 		self.internal_plot = [[' ' for y in range(y_min, y_max+1)] for x in range(x_min, x_max+1)]
 	def set(self,a,b,char):
 		if (a < self.x_max and a > self.x_min and b < self.y_max and b > self.y_min):
@@ -18,9 +23,9 @@ class Plot(object):
 			else:
 				self.internal_plot[a][b] = char
 	def plot_axes(self):
-		for x in range(x_min, x_max):
+		for x in range(self.x_min, self.x_max):
 			plot[x][0] = '.'
-		for y in range(y_min, y_max):
+		for y in range(self.y_min, self.y_max):
 			plot[0][y] = ':'
 	def print_plot(self):
 		result = ''
@@ -29,6 +34,26 @@ class Plot(object):
 				result += self.internal_plot[x][y]
 			result += '\n'
 		print result
+	def plot_polar(self, function):
+		def f(t):
+			try: return function(t*self.t_size)
+			except: return max(x_max,y_max,-x_min,-y_min)+10
+		
+		for t in range(int(self.t_min/self.t_size), int(self.t_max/self.t_size)):
+			x = int(f(t)*math.cos(t*self.t_size)/self.x_size)
+			y = int(f(t)*math.sin(t*self.t_size)/self.y_size)
+			a = (t*self.t_size) % math.pi
+			if a < (math.pi/8) or a > (7*math.pi/8):
+				self.set(x,y,'|')
+			elif a < (3*math.pi/8):
+				self.set(x,y,'\\') 
+			elif a < (5*math.pi/8):
+				self.set(x,y,'-')
+			elif a < (7*math.pi/8):
+				self.set(x,y,'/')
+			else:
+				self.set(x,y,'*')
+		
 	def plot_function(self, function):
 		
 		#Modify the function

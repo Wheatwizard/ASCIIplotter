@@ -19,12 +19,15 @@ if __name__ == '__main__':
 	#Execute the code in the test file
 	exec(open(file_name).read())
 	
-	plot = Plot(x_min, x_max, x_size, y_min, y_max, y_size)
+	plot = Plot(x_min, x_max, x_size, y_min, y_max, y_size, t_min, t_max, t_size)
 		
 	#Plot axes
 	if plot_axes: plot.plot_axes
 	
 	#Plot functions
 	for function in functions:
-		plot.plot_function(function)
+		if polar:
+			plot.plot_polar(function)
+		else:
+			plot.plot_function(function)
 	plot.print_plot()	
