@@ -47,10 +47,19 @@ class Plot(object):
 			try: return function(t*self.t_size)
 			except: return max(x_max,y_max,-x_min,-y_min)+10
 		
+		#Initialize x_last and y_last to be values the first can never match
+		x_last = int(f(int(self.t_min/self.t_size))*math.cos(int(self.t_min/self.t_size)*self.t_size)/self.x_size) + 1 
+		y_last = int(f(int(self.t_min/self.t_size))*math.sin(int(self.t_min/self.t_size)*self.t_size)/self.y_size) + 1
+
 		for t in range(int(self.t_min/self.t_size), int(self.t_max/self.t_size)):
 			x = int(f(t)*math.cos(t*self.t_size)/self.x_size)
 			y = int(f(t)*math.sin(t*self.t_size)/self.y_size)
 			a = (t*self.t_size) % math.pi
+			
+			#No use replotting the same point
+			if x == x_last and y == y_last:
+				continue
+			
 			if a < (math.pi/8) or a > (7*math.pi/8):
 				self.set(x,y,'|')
 			elif a < (3*math.pi/8):
@@ -61,7 +70,8 @@ class Plot(object):
 				self.set(x,y,'/')
 			else:
 				self.set(x,y,'*')
-
+			x_last = x
+			y_last = y
 		#Restore the color to its natural state
 		self.color = bcolors.ENDC
 		
