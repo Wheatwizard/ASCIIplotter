@@ -9,7 +9,7 @@ functions = [f]
 #Put colors for each plot
 #Default for no color
 
-colors = [pink]
+colors = [green]
 
 #State whether it should be in polar coordinates
 #(true is polar false is cartesian)

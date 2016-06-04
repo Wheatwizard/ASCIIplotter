@@ -45,29 +45,51 @@ class Plot(object):
 
 		def f(t):
 			try: return function(t*self.t_size)
-			except: return max(x_max,y_max,-x_min,-y_min)+10
+			except: return max(self.x_max,self.y_max,-self.x_min,-self.y_min)+10
+		
+		def getX(t):
+			return f(t)*math.cos(t*self.t_size)/self.x_size
+		
+		def getY(t):
+			return f(t)*math.sin(t*self.t_size)/self.y_size
 		
 		#Initialize x_last and y_last to be values the first can never match
-		x_last = int(f(int(self.t_min/self.t_size))*math.cos(int(self.t_min/self.t_size)*self.t_size)/self.x_size) + 1 
-		y_last = int(f(int(self.t_min/self.t_size))*math.sin(int(self.t_min/self.t_size)*self.t_size)/self.y_size) + 1
-
+		x_last = int(getX(int(self.t_min/self.t_size))) + 1
+		y_last = int(getY(int(self.t_min/self.t_size))) + 1
+		
 		for t in range(int(self.t_min/self.t_size), int(self.t_max/self.t_size)):
-			x = int(f(t)*math.cos(t*self.t_size)/self.x_size)
-			y = int(f(t)*math.sin(t*self.t_size)/self.y_size)
+			x = int(getX(t))
+			y = int(getY(t))
 			a = (t*self.t_size) % math.pi
+			
+			#Get cartesian slope
+			
+			x_diff = getX(t+.5) - getX(t-.5)
+			y_diff = getY(t+.5) - getY(t-.5)
+			try:
+				c_diff = y_diff/x_diff
+			except ZeroDivisionError:
+				#Division by zero results in infinite slope
+				#This is close enough
+				c_diff = x_diff * 2**64
 			
 			#No use replotting the same point
 			if x == x_last and y == y_last:
 				continue
 			
-			if a < (math.pi/8) or a > (7*math.pi/8):
+			if abs(c_diff) > 2:
 				self.set(x,y,'|')
-			elif a < (3*math.pi/8):
+			elif c_diff < -.5:
 				self.set(x,y,'\\') 
-			elif a < (5*math.pi/8):
-				self.set(x,y,'-')
-			elif a < (7*math.pi/8):
+			elif c_diff > .5 :
 				self.set(x,y,'/')
+			elif abs(c_diff) < .5:
+				if getY(t)%1 < .25: 
+					self.set(x,y,'_')
+				elif getY(t)%1 < .75:
+					self.set(x,y,'-')
+				else:
+					self.set(x,y+1,'_')
 			else:
 				self.set(x,y,'*')
 			x_last = x
