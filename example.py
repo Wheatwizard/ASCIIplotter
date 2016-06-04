@@ -31,7 +31,7 @@ y_min = -15
 y_max = 12
 
 #Turn autofit on or off
-autofit = False
+autofit = True
 
 #State whether or not axes should be plotted
 plot_axes = False
