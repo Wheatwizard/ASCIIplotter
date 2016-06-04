@@ -5,10 +5,17 @@ def f(x):
 def g(x):
 	return math.cos(x)
 
+def h(x):
+	return -math.sin(x)
 
 #Put all the functions you want to plot into this python array
 #Priority is given to later functions
-functions = [f,g]
+functions = [f,g,h]
+
+#Put colors for each plot
+#Default for no color
+
+colors = [red, default, blue]
 
 #State whether it should be in polar coordinates
 #(true is polar false is cartesian)

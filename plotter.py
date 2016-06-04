@@ -1,5 +1,7 @@
 import math
 
+from colors import bcolors
+
 from sys import argv
 
 from plot import Plot
@@ -16,6 +18,14 @@ if __name__ == '__main__':
 	#Get commandline arguments
 	script, file_name = argv
 	
+	#Set up colors
+	red = bcolors.RED
+	blue = bcolors.BLUE
+	green = bcolors.GREEN
+	yellow = bcolors.YELLOW
+	pink = bcolors.PINK
+	default = bcolors.ENDC
+
 	#Execute the code in the test file
 	exec(open(file_name).read())
 	
@@ -40,9 +50,9 @@ if __name__ == '__main__':
 	if plot_axes: plot.plot_axes
 	
 	#Plot functions
-	for function in functions:
+	for (function, color) in zip(functions,colors):
 		if polar:
-			plot.plot_polar(function)
+			plot.plot_polar(function, color)
 		else:
-			plot.plot_function(function)
+			plot.plot_function(function, color)
 	plot.print_plot()	
