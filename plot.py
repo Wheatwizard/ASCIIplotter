@@ -17,8 +17,8 @@ class Plot(object):
 		self.color = bcolors.ENDC
 		self.color_plot = [[bcolors.ENDC for y in range(y_min, y_max+1)] for x in range(x_min, x_max+1)]
 	def set(self,a,b,char):
-		self.color_plot[a][b] = self.color
 		if (a < self.x_max and a > self.x_min and b < self.y_max and b > self.y_min):
+			self.color_plot[a][b] = self.color
 			if set([char,self.internal_plot[a][b]]) == set(['\\','/']):
 				self.internal_plot[a][b] = 'X'
 			elif set([char,self.internal_plot[a][b]]) == set(['-','|']):
