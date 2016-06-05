@@ -24,6 +24,8 @@ if __name__ == '__main__':
 	green = bcolors.GREEN
 	yellow = bcolors.YELLOW
 	pink = bcolors.PINK
+	cyan = bcolors.CYAN
+	grey = bcolors.GREY
 	default = bcolors.ENDC
 
 	#Execute the code in the test file
