@@ -40,9 +40,6 @@ class Plot(object):
 			result += '\n'
 		print result
 	def plot_polar(self, function, color):
-		#Set the color so the function graphs in the right color
-		self.color = color
-
 		def f(t):
 			try: return function(t*self.t_size)
 			except: return max(self.x_max,self.y_max,-self.x_min,-self.y_min)+10
@@ -58,6 +55,9 @@ class Plot(object):
 		y_last = int(getY(int(self.t_min/self.t_size))) + 1
 		
 		for t in range(int(self.t_min/self.t_size), int(self.t_max/self.t_size)):
+			#Set the color so the function graphs in the right color
+			self.color = color(x)
+
 			x = int(getX(t))
 			y = int(getY(t))
 			a = (t*self.t_size) % math.pi
@@ -98,8 +98,6 @@ class Plot(object):
 		self.color = bcolors.ENDC
 		
 	def plot_function(self, function, color):
-		#Set the color so the function graphs in the right color
-		self.color = color
 		
 		#Modify the function
 		def f(x):
@@ -110,6 +108,9 @@ class Plot(object):
 				return self.y_max+10
 		
 		for x in range(self.x_min, self.x_max):
+			#Set the color so the function graphs in the right color
+			self.color = color(x)
+		
 			back_diff = f(x)-f(x-1)
 						
 			#Check that the last value was valid

@@ -17,7 +17,7 @@ functions = [f]
 #-grey
 #Default for no color
 
-colors = [cyan]
+colors = [rainbow]
 
 #State whether it should be in polar coordinates
 #(true is polar false is cartesian)

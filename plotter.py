@@ -19,14 +19,18 @@ if __name__ == '__main__':
 	script, file_name = argv
 	
 	#Set up colors
-	red = bcolors.RED
-	blue = bcolors.BLUE
-	green = bcolors.GREEN
-	yellow = bcolors.YELLOW
-	pink = bcolors.PINK
-	cyan = bcolors.CYAN
-	grey = bcolors.GREY
-	default = bcolors.ENDC
+	red = lambda x:bcolors.RED
+	blue = lambda x:bcolors.BLUE
+	green = lambda x:bcolors.GREEN
+	yellow = lambda x:bcolors.YELLOW
+	pink = lambda x:bcolors.PINK
+	cyan = lambda x:bcolors.CYAN
+	grey = lambda x:bcolors.GREY
+	#Rainbow frequency is denoted by this arbitrary number (6 for now)
+	#later I may make plans to change this to be customizable
+	__r = 6
+	rainbow = lambda x:[bcolors.RED,bcolors.YELLOW,bcolors.GREEN,bcolors.CYAN,bcolors.BLUE,bcolors.PINK][(x/__r)%6]
+	default = lambda x:bcolors.ENDC
 
 	#Execute the code in the test file
 	exec(open(file_name).read())
