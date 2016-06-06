@@ -56,7 +56,7 @@ class Plot(object):
 		
 		for t in range(int(self.t_min/self.t_size), int(self.t_max/self.t_size)):
 			#Set the color so the function graphs in the right color
-			self.color = color(x)
+			self.color = color(t)
 
 			x = int(getX(t))
 			y = int(getY(t))

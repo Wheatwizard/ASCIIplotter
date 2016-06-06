@@ -23,13 +23,13 @@ if __name__ == '__main__':
 	blue = lambda x:bcolors.BLUE
 	green = lambda x:bcolors.GREEN
 	yellow = lambda x:bcolors.YELLOW
-	pink = lambda x:bcolors.PINK
+	magenta = lambda x:bcolors.MAGENTA
 	cyan = lambda x:bcolors.CYAN
 	grey = lambda x:bcolors.GREY
 	#Rainbow frequency is denoted by this arbitrary number (6 for now)
 	#later I may make plans to change this to be customizable
 	__r = 6
-	rainbow = lambda x:[bcolors.RED,bcolors.YELLOW,bcolors.GREEN,bcolors.CYAN,bcolors.BLUE,bcolors.PINK][(x/__r)%6]
+	rainbow = lambda x:[bcolors.RED,bcolors.ORANGE,bcolors.YELLOW,bcolors.GREEN,bcolors.CYAN,bcolors.BLUE,bcolors.DARKMAGENTA][(x/__r)%7]
 	default = lambda x:bcolors.ENDC
 
 	#Execute the code in the test file

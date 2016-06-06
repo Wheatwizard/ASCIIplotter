@@ -1,6 +1,6 @@
 #Define any number of functions written in python
 def f(x):
-	return math.sin(x)
+	return 2*(x)
 
 #Put all the functions you want to plot into this python array
 #Priority is given to later functions
@@ -8,27 +8,29 @@ functions = [f]
 
 #Put colors for each plot
 #Available colors are:
-#-pink
+#-magenta
 #-red
+#orange
 #-yellow
 #-green
 #-blue
 #-cyan
 #-grey
-#Default for no color
+#-black
 
+#Default for no color
 colors = [rainbow]
 
 #State whether it should be in polar coordinates
 #(true is polar false is cartesian)
-polar = False
+polar = True
 
 #Define the x size of each character
 #(distance between tick marks on the graph)
-x_size = 1/16.
+x_size = 1/4.
 
 #Define the y size of each character
-y_size = 1/8.
+y_size = 1/2.
 
 #Define the start and end of the x partitions
 x_min = -90
@@ -47,7 +49,7 @@ plot_axes = False
 #For Polar plots
 
 #Define the t partitions
-t_size = .03
+t_size = .003
 t_min = 0
 #Angle in radians
 t_max = 4*math.pi
