@@ -111,7 +111,7 @@ class Plot(object):
 			#Set the color so the function graphs in the right color
 			self.color = color(x)
 		
-			back_diff = f(x)-f(x-1)
+			back_diff = int(f(x-1)) - int(f(x))
 						
 			#Check that the last value was valid
 			try:
@@ -120,7 +120,7 @@ class Plot(object):
 				back_diff = 0
 			
 			diff = f(x+.5)-f(x-.5)
-			front_diff = f(x+1)-f(x)	
+			front_diff = int(f(x+1)) - int(f(x))	
 			
 			#Check that the next value was valid
 			try:
@@ -144,25 +144,14 @@ class Plot(object):
 				self.set(x,int(f(x)),'/')
 			
 			#Complete the line if it is non-continuous
-			if back_diff < -1:
-				y = int(f(x))+1
-				while y < f(x-.5) and y < self.y_max:
+			#TODO compress into single for loop
+			if abs(back_diff) > 1:
+				for y in range(int(f(x)+math.copysign(1,int(back_diff))), int(f(x-.5))-(back_diff < 0), int(math.copysign(1,back_diff))):
+					if not self.y_min < y < self.y_max:break
 					self.set(x,y,'|')
-					y += 1
-			elif back_diff > 1:
-				y = int(f(x))-1
-				while y > f(x-.5) and y > self.y_min:
+			if abs(front_diff) > 1:
+				for y in range(int(f(x)+math.copysign(1,int(front_diff))), int(f(x+.5))-(front_diff < 0), int(math.copysign(1,front_diff))):
+					if not self.y_min < y < self.y_max:break
 					self.set(x,y,'|')
-					y -= 1
-			if front_diff < -1:
-				y = int(f(x))-1
-				while y > f(x+.5) and y > self.y_min:
-					self.set(x,y,'|')
-					y -= 1
-			elif front_diff > 1:
-				y = int(f(x))+1
-				while y < f(x+.5) and y < self.y_max:
-					self.set(x,y,'|')
-					y += 1	
 		#Restore the color to its natural state
 		self.color = bcolors.ENDC
