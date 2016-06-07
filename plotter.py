@@ -31,7 +31,22 @@ if __name__ == '__main__':
 	__r = 6
 	rainbow = lambda x:[bcolors.RED,bcolors.ORANGE,bcolors.YELLOW,bcolors.GREEN,bcolors.CYAN,bcolors.BLUE,bcolors.DARKMAGENTA][(x/__r)%7]
 	default = lambda x:bcolors.ENDC
-
+	
+	#Default all variables for the file
+	functions = []
+	colors = []
+	x_size = 1
+	y_size = 1
+	x_min = 0
+	x_max = 0
+	y_min = 0
+	y_max = 0
+	autofit = False
+	plot_axes = False
+	t_size = 1
+	t_min = 0
+	t_max = 2*math.pi
+	
 	#Execute the code in the test file
 	exec(open(file_name).read())
 	
@@ -79,6 +94,13 @@ if __name__ == '__main__':
 		
 	#Plot axes
 	if plot_axes: plot.plot_axes
+
+	#Fix descrepancies betwen functions and colors	
+	if len(functions) < len(colors):
+		colors = colors[:len(functions)]
+	
+	if len(functions) > len(colors):
+		colors += [default] * (len(functions)-len(colors))
 	
 	#Plot functions
 	for (function, color) in zip(functions,colors):
