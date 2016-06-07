@@ -21,7 +21,16 @@ class bcolors:
 	ORANGE = '\033[38;5;202m'
 	DARKORANGE = '\033[38;5;130m'
 	ENDC =  '\033[0m'
+
+	@staticmethod
+	def getcolor(colornum):
+		return '\033[38;5;%dm' %(colornum)
+
+	@staticmethod
+	def colorize(color, sting):
+		return color + string + '\033[0m'
+
 if __name__ == '__main__':
-	print '\033[38;5;130m' + '1'
-	print '\033[38;5;202m' + '2' 
+	print bcolors.getcolor(202) + '1'
+	print bcolors.getcolor(130) + '2',
 	print bcolors.ENDC
