@@ -16,7 +16,7 @@ functions = [f,g,h,i]
 #True colors does not work in all environments
 #To find out if your environment supports truecolors follow this link
 #https://gist.github.com/XVilka/8346728
-truecolors = False
+truecolors = True
 
 #Put colors for each plot
 #Available colors are:
@@ -49,12 +49,12 @@ x_size = 1/32.
 y_size = 1/16.
 
 #Define the start and end of the x partitions
-x_min = -65
-x_max = 65
+x_min = 0
+x_max = max_x
 
 #Define the start and end of the y partitions
-y_min = -70
-y_max = 70
+y_min = 0
+y_max = max_y
 
 #Turn autofit on or off
 autofit = True

@@ -2,6 +2,8 @@ import math
 
 import bcolors
 
+import os
+
 from sys import argv
 
 from plot import Plot
@@ -60,6 +62,10 @@ if __name__ == '__main__':
 	t_size = 1
 	t_min = 0
 	t_max = 2*math.pi
+	
+	#Set up terminal defaults
+	max_y, max_x = os.popen('stty size','r').read().split()
+	max_y, max_x = int(max_y)-1,int(max_x)-1
 	
 	#Execute the code in the test file
 	exec(open(file_name).read())
