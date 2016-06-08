@@ -1,6 +1,6 @@
 import math
 
-from colors import bcolors
+import bcolors
 
 class Plot(object):
 	def __init__(self, x_min, x_max, x_size, y_min, y_max, y_size, t_min, t_max, t_size):

@@ -1,6 +1,6 @@
 import math
 
-from colors import bcolors
+import bcolors
 
 from sys import argv
 
@@ -18,6 +18,8 @@ if __name__ == '__main__':
 	#Get commandline arguments
 	script, file_name = argv
 	
+	truecolors = False
+
 	#Set up colors
 	red = lambda x:bcolors.RED
 	blue = lambda x:bcolors.BLUE
@@ -26,10 +28,22 @@ if __name__ == '__main__':
 	magenta = lambda x:bcolors.MAGENTA
 	cyan = lambda x:bcolors.CYAN
 	grey = lambda x:bcolors.GREY
+	orange = lambda x:bcolors.TRUEORANGE if truecolors else bcolors.ORANGE
+	pink = lambda x:bcolors.TRUEPINK if truecolors else bcolors.ENDC
+	purple = lambda x:bcolors.TRUEPURPLE if truecolors else bcolors.ENDC
+	brown = lambda x:bcolors.TRUEBROWN if truecolors else bcolors.ENDC
 	#Rainbow frequency is denoted by this arbitrary number (6 for now)
 	#later I may make plans to change this to be customizable
 	__r = 6
-	rainbow = lambda x:[bcolors.RED,bcolors.ORANGE,bcolors.YELLOW,bcolors.GREEN,bcolors.CYAN,bcolors.BLUE,bcolors.DARKMAGENTA][(x/__r)%7]
+	rainbow = lambda x:bcolors.rainbow(x*__r) if truecolors else [
+		bcolors.RED,
+		bcolors.ORANGE,
+		bcolors.YELLOW,
+		bcolors.GREEN,
+		bcolors.CYAN,
+		bcolors.BLUE,
+		bcolors.DARKMAGENTA][(x/__r)%7
+	]
 	default = lambda x:bcolors.ENDC
 	
 	#Default all variables for the file
