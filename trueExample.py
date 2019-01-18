@@ -35,7 +35,7 @@ truecolors = True
 #-brown
 
 #Default for no color
-colors = [red,blue,yellow,orange]
+colors = [red,blue,yellow,rainbow]
 
 #State whether it should be in polar coordinates
 #(true is polar false is cartesian)
