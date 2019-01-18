@@ -8,4 +8,4 @@ An example can be seen in example.py.
 
 ![Output][Output]
 
- [Output] : https://github.com/WheatWizard/ASCIIplotter/blob/master/output.png
+ [Output] : https://raw.githubusercontent.com/Wheatwizard/ASCIIplotter/master/output.png
