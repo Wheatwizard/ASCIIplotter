@@ -6,4 +6,6 @@ An example can be seen in example.py.
 
 ## Sample Output
 
-[[https://github.com/WheatWizard/ASCIIplotter/blob/master/Output.png|alt=Output]]
+![Output][Output]
+
+ [Output] : https://github.com/WheatWizard/ASCIIplotter/blob/master/Output.png
